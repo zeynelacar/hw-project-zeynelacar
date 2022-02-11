@@ -30,12 +30,16 @@ public class Payment {
     @JoinColumn(name ="flat_number",referencedColumnName = "flat_number")
     private Flat flat_number;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name ="total_fee",referencedColumnName = "total_fee")
-    private Fee total_fee;
-
     @NotNull(message = "Payment date can not be null")
     private Date payment_date;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name ="payment_amount",referencedColumnName = "payment")
+    private Flat payment;
+
+
+
+
 
 
 

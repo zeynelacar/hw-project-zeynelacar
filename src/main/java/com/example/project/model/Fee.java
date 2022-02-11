@@ -34,16 +34,16 @@ public class Fee {
     @NotNull(message = "Due value can not be null")
     private Integer dues;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "flat_debt", referencedColumnName = "name")
-    private Flat debt;
+
+    @Column(name="flat_debt")
+    private Integer flat_debt;
+
 
     @NotNull(message = "Receivable value can not be null")
     private Integer receivable;
 
-    @NotNull(message = "Total fee value can not be null")
+    @Column(name="total_fee")
     private Integer total_fee;
-
 
 
 }

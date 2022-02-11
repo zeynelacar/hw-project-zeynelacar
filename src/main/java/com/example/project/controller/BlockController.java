@@ -11,18 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/block")
 public class BlockController {
 
-    private List<Block> blocks = new ArrayList<>();
-    {
-        blocks.add(new Block("A1"));
-        blocks.add(new Block("A2"));
-        blocks.add(new Block("A3"));
-    }
+
 
     @RequestMapping(method = RequestMethod.GET,path = "/hello")
     public String hello(){
-        return "Hello Patika.dev bootcampers!";
+        return "Hello to the blocks";
     }
     @RequestMapping(method = RequestMethod.GET,path ="/blocks/all")
     public List<Block> getAllBlocks(){
