@@ -2,32 +2,43 @@ package com.example.project.controller;
 
 
 import com.example.project.model.Block;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.project.service.interfaces.BlockService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/block")
 public class BlockController {
 
+    private final BlockService blockService;
 
-
-    @RequestMapping(method = RequestMethod.GET,path = "/hello")
+    @GetMapping(value = "/hello")
     public String hello(){
         return "Hello to the blocks";
     }
-    @RequestMapping(method = RequestMethod.GET,path ="/blocks/all")
+    @GetMapping (value ="/all")
     public List<Block> getAllBlocks(){
-        return  blocks;
+        return  blockService.getAllBlocks();
     }
-    @RequestMapping(method =RequestMethod.POST ,path ="/blocks/add")
-    public Block addBlock(@RequestBody Block newBlock)
-    {
-        blocks.add(newBlock);
-        return newBlock;
+    @PostMapping(value ="/add")
+    public void addBlock(@RequestBody Block newBlock){
+        blockService.addBlock(newBlock);
     }
+
+    @PutMapping(value="/update")
+    public Block updateBlock(@RequestBody Block block){
+        return blockService.updateBlock(block);
+    }
+
+    @DeleteMapping(value = "/delete")
+    public boolean deleteFlight(@RequestParam @Min(1) Integer id) {
+        return blockService.deleteBlock(id);
+    }
+
 }
