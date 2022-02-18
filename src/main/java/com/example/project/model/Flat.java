@@ -19,14 +19,14 @@ public class Flat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer flat_id;
+    private Integer flatId;
 
 
     @NotNull
     private Integer flat_number;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "block_id",referencedColumnName = "id")
     private Block id;
 
 }

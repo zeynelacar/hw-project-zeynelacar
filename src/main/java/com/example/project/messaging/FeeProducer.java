@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/messaging/send")
+@RequestMapping("/messaging/publish")
 public class FeeProducer {
 
     @Autowired
@@ -29,7 +29,7 @@ public class FeeProducer {
     }
 
     @PostMapping("/fee/{id}")
-    public String publishPassenger(@PathVariable Integer id) {
+    public String publishFee(@PathVariable Integer id) {
         Fee fee = feeService.getFee(id);
         template.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.ROUTING_KEY, fee);
         return "Fee sent successfully";

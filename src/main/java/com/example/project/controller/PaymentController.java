@@ -27,10 +27,13 @@ public class PaymentController {
         return paymentService.makePayment(paymentAmount,feeId);
     }*/
 
-    @PostMapping(value ="/pay")
-    public Payment makePayment(@RequestParam @Min(1) Integer paymentAmount,@RequestParam @Min(1) Integer feeId){
-         return paymentService.makePayment(paymentAmount,feeId);
+    @PostMapping(value ="/pay/{feeId}")
+    public Payment makePayment(@PathVariable Integer feeId,@RequestBody Payment payment){
+          return paymentService.makePayment(payment,feeId);
     }
+
+    /*@PostMapping("/add")
+    public void addPayment(@RequestBody Payment payment){ paymentService.addPayment(payment);}*/
 
     @PutMapping(value="/update")
     public Payment updatePayment(@RequestBody Payment payment){

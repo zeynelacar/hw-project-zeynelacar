@@ -24,17 +24,9 @@ public class Payment {
     private Integer id;
 
 
-
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "flat_id")
-    private Flat flat;
-
     @NotNull
     private Integer payment_amount;
 
-    @NotNull
-    private Date payment_date;
 
 
 

@@ -1,5 +1,6 @@
 package com.example.project.service.implementations;
 
+import com.example.project.exception.NotFoundException;
 import com.example.project.model.Fee;
 import com.example.project.repository.FeeRepository;
 import com.example.project.service.interfaces.FeeService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -23,7 +25,16 @@ public class FeeServiceImpl implements FeeService {
     @Override
     public Fee getFee(Integer id) {
         Optional<Fee> byId = feeRepository.findById(id);
-        return byId.orElseThrow(()->new RuntimeException("No fee found"));
+        return byId.orElseThrow(()->new NotFoundException("Fee"));
+    }
+
+    @Override
+    public List<Fee> getFeeByFlatId(Integer flatId) {
+        List<Fee> allFees = getAllFees();
+        return allFees.stream()
+                .filter(f -> f.getFlat().getFlatId().equals(flatId))
+                .collect(Collectors.toList());
+
     }
 
     @Override

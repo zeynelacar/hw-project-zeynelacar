@@ -1,6 +1,8 @@
 package com.example.project.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Entity
 @Table(name = "fees")
-public class Fee {
+public class Fee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,9 +36,10 @@ public class Fee {
     @NotNull
     private Integer dues;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "flat_id")
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "flat_id",referencedColumnName = "flatId",nullable = false)
+    @JsonIgnoreProperties({"flat_number","id"})
     private Flat flat;
 
     @Transient

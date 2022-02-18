@@ -12,6 +12,8 @@ public interface FeeService {
 
     Fee getFee(Integer id);
 
+    List<Fee> getFeeByFlatId(Integer flatId);
+
     void addFee(@RequestBody Fee fee);
 
     Fee updateFee(@RequestBody Fee fee );

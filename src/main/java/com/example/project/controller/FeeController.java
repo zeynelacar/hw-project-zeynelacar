@@ -23,6 +23,9 @@ public class FeeController
     @GetMapping(value ="/find")
     public Fee getFee(@RequestParam @Min((1)) Integer id){return feeService.getFee(id);}
 
+    @GetMapping(value ="/find-by-flat")
+    public List<Fee> getFeeByFlatId(@RequestParam @Min((1)) Integer flatId){return feeService.getFeeByFlatId(flatId);}
+
     @PostMapping(value ="/add")
     public void addFee(@RequestBody Fee newFee){
         feeService.addFee(newFee);

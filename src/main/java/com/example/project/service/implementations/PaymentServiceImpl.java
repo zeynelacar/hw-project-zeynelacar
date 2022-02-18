@@ -8,9 +8,13 @@ import com.example.project.repository.PaymentRepository;
 import com.example.project.service.interfaces.FeeService;
 import com.example.project.service.interfaces.FlatService;
 import com.example.project.service.interfaces.PaymentService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     /*private final FlatService flatService;*/
 
+    @Autowired
     private final FeeService feeService;
 
     @Override
@@ -38,14 +43,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment makePayment(@NotNull Integer paymentAmount,@NotNull Integer feeId) {
+    public Payment makePayment(Payment payment,@NotNull Integer feeId) {
             Fee fee = feeService.getFee(feeId);
 
-            if (paymentAmount.equals(fee.getTotalFee())) {
-                Payment newPayment = new Payment();
+            if (payment.getPayment_amount().equals(fee.getTotalFee())) {
                 feeService.deleteFee(feeId);
-                addPayment(newPayment);
-                return newPayment;
+                return paymentRepository.save(payment);
             }
 
             throw new RuntimeException("System only receives exact amount of payment.");
