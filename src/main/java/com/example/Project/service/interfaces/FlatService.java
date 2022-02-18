@@ -16,6 +16,6 @@ public interface FlatService {
 
     Flat updateFlat(@RequestBody Flat flat);
 
-    boolean deleteBlock(Integer id);
+    boolean deleteFlat(Integer id);
 
 }

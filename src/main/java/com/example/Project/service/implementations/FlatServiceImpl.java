@@ -2,41 +2,49 @@ package com.example.project.service.implementations;
 
 
 import com.example.project.model.Flat;
+import com.example.project.repository.FlatRepository;
 import com.example.project.service.interfaces.FlatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 @RequiredArgsConstructor
 @Service
 public class FlatServiceImpl implements FlatService {
 
-    private final FlatService flatService;
+    private final FlatRepository flatRepository;
 
 
     @Override
     public List<Flat> getAllFlats() {
-        return null;
+
+        return flatRepository.findAll();
     }
 
     @Override
     public Flat getFlat(Integer id) {
-        return null;
+        Optional<Flat> byId = flatRepository.findById(id);
+        return byId.orElseThrow(()->new RuntimeException("Flat not found"));
     }
 
     @Override
     public void addFlat(Flat flat) {
 
+        flatRepository.save(flat);
+
     }
 
     @Override
     public Flat updateFlat(Flat flat) {
-        return null;
+        return flatRepository.save(flat);
     }
 
     @Override
-    public boolean deleteBlock(Integer id) {
-        return false;
+    public boolean deleteFlat(Integer id) {
+        flatRepository.delete(getFlat(id));
+        return true;
     }
 }

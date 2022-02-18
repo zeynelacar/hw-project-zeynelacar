@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "blocks")
+@Table(name = "flats")
 public class Flat {
 
 

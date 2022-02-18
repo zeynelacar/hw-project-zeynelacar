@@ -21,9 +21,15 @@ public class PaymentController {
     public List<Payment> getAllPayments(){
         return  paymentService.getAllPayments();
     }
+
+    /*@PostMapping(value ="/pay")
+    public Payment makePayment(@RequestBody Integer paymentAmount,Integer feeId){
+        return paymentService.makePayment(paymentAmount,feeId);
+    }*/
+
     @PostMapping(value ="/pay")
-    public void addFlat(@RequestBody Integer paymentAmount,Integer feeId){
-        paymentService.makePayment(paymentAmount,feeId);
+    public Payment makePayment(@RequestParam @Min(1) Integer paymentAmount,@RequestParam @Min(1) Integer feeId){
+         return paymentService.makePayment(paymentAmount,feeId);
     }
 
     @PutMapping(value="/update")

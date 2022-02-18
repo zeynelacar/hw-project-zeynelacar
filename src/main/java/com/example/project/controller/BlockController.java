@@ -37,7 +37,7 @@ public class BlockController {
     }
 
     @DeleteMapping(value = "/delete")
-    public boolean deleteFlight(@RequestParam @Min(1) Integer id) {
+    public boolean deleteBlock(@RequestParam @Min(1) Integer id) {
         return blockService.deleteBlock(id);
     }
 

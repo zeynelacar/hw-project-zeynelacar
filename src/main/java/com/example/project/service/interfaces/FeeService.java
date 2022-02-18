@@ -18,6 +18,4 @@ public interface FeeService {
 
     boolean deleteFee(Integer id);
 
-    /*Fee getTotalFee(Integer water_bill ,Integer  gas_bill , Integer  electricity_bill , Integer dues);*/
-
 }

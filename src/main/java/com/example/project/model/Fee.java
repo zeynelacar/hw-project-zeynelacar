@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "blocks")
+@Table(name = "fees")
 public class Fee {
 
     @Id

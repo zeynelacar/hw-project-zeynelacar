@@ -11,6 +11,7 @@ import com.example.project.service.interfaces.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Payment makePayment(Integer paymentAmount, Integer feeId) {
+    public Payment makePayment(@NotNull Integer paymentAmount,@NotNull Integer feeId) {
             Fee fee = feeService.getFee(feeId);
 
             if (paymentAmount.equals(fee.getTotalFee())) {
@@ -45,11 +46,9 @@ public class PaymentServiceImpl implements PaymentService {
                 feeService.deleteFee(feeId);
                 addPayment(newPayment);
                 return newPayment;
-
-            }else{
-                System.out.println("System only receives exact amount of payment.");
             }
-            throw new RuntimeException("No fee found.");
+
+            throw new RuntimeException("System only receives exact amount of payment.");
     }
 
     @Override

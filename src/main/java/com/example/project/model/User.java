@@ -22,7 +22,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Size(min = 6, message = "Minimum password length: 5 characters")
+    @Size(min = 6, message = "Minimum password length: 6 characters")
     private String password;
 
     @JsonBackReference
