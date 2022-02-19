@@ -1,5 +1,6 @@
 package com.example.project.service.implementations;
 
+import com.example.project.exception.NotFoundException;
 import com.example.project.model.Block;
 import com.example.project.repository.BlockRepository;
 import com.example.project.service.interfaces.BlockService;
@@ -24,7 +25,7 @@ public class BlockServiceImpl implements BlockService {
     @Override
     public Block getBlock(Integer id) {
         Optional<Block> byId = blockRepository.findById(id);
-        return byId.orElseThrow(() -> new RuntimeException("Block not found"));
+        return byId.orElseThrow(() -> new NotFoundException("Block"));
     }
 
     @Override

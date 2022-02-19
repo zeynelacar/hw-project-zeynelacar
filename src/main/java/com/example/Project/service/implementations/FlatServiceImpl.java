@@ -1,6 +1,7 @@
 package com.example.project.service.implementations;
 
 
+import com.example.project.exception.NotFoundException;
 import com.example.project.model.Flat;
 import com.example.project.repository.FlatRepository;
 import com.example.project.service.interfaces.FlatService;
@@ -27,7 +28,7 @@ public class FlatServiceImpl implements FlatService {
     @Override
     public Flat getFlat(Integer id) {
         Optional<Flat> byId = flatRepository.findById(id);
-        return byId.orElseThrow(()->new RuntimeException("Flat not found"));
+        return byId.orElseThrow(()->new NotFoundException("Flat"));
     }
 
     @Override

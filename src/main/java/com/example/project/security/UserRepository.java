@@ -10,15 +10,11 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     boolean existsByUsername(String username);
 
-    boolean existsByFlat(Flat flat);
+    boolean existsByPassword(String password);
 
     User findByUsername(String username);
 
-    User findByFlat(Flat flat);
-
     void deleteByUsername(String username);
-
-    User deleteByFlat(Flat flat);
 
 
 

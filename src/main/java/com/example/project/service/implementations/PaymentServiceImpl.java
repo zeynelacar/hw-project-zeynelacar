@@ -1,5 +1,7 @@
 package com.example.project.service.implementations;
 
+import com.example.project.exception.InvalidRequestException;
+import com.example.project.exception.NotFoundException;
 import com.example.project.model.Fee;
 import com.example.project.model.Flat;
 import com.example.project.model.Payment;
@@ -39,7 +41,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment getPayment(Integer id) {
         Optional<Payment> byId = paymentRepository.findById(id);
-        return byId.orElseThrow(()->new RuntimeException("No payment found."));
+        return byId.orElseThrow(()->new NotFoundException("Payment"));
     }
 
     @Override
@@ -51,7 +53,7 @@ public class PaymentServiceImpl implements PaymentService {
                 return paymentRepository.save(payment);
             }
 
-            throw new RuntimeException("System only receives exact amount of payment.");
+            throw new InvalidRequestException("System only receives exact amount of payment.");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Flat {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "block_id",referencedColumnName = "id")
+    @JsonIgnoreProperties({"name"})
     private Block id;
 
 }

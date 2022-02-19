@@ -2,11 +2,13 @@ package com.example.project.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+@Getter
 @Data
 @Entity
 public class User {
@@ -30,10 +32,14 @@ public class User {
     @JoinColumn(name = "flat_id")
     private Flat flat;
 
-}
 
-    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = {
             @JoinColumn(name = "user_id")}, inverseJoinColumns = {
             @JoinColumn(name = "role_id")})
-    public List<Role> roles;*/
+    public List<Role> roles;
+
+
+}
+
+
