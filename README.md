@@ -3,7 +3,7 @@ This project contains the backend of a bill management system. It is written in 
 - Add/Remove blocks
 - Add/Remove flats
 - Add/Remove fee
-- List all entity
+- List all entities
 - Search fees by flat id
 - Make payment
 ---
