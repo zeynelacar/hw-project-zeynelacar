@@ -1,6 +1,5 @@
 --table schemas
 
-
 DROP TABLE IF EXISTS payments;
 DROP TABLE IF EXISTS fees;
 DROP TABLE IF EXISTS user_roles;
@@ -101,7 +100,7 @@ VALUES (1,1),
 
 
 INSERT INTO "user" (username,email,password)
-VALUES ('zeynel','admin@adminonline.com','zeynel123');
+VALUES ('zeynel','admin@adminonline.com','zeynelacar');
 
 INSERT INTO user_roles(user_id,role_id)
 VALUES (1,1);

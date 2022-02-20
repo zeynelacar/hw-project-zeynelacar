@@ -38,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/signin").permitAll()
                 .antMatchers("/api/user/signup").permitAll()
                 .antMatchers("/api/fee/add").hasRole("ADMIN")
+                .antMatchers("/api/flat/add").hasRole("ADMIN")
+                .antMatchers("/api/block/add").hasRole("ADMIN")
+                .antMatchers("/api/payment/delete").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         // Apply JWT

@@ -32,7 +32,7 @@ public class FeeServiceImpl implements FeeService {
     public List<Fee> getFeeByFlatId(Integer flatId) {
         List<Fee> allFees = getAllFees();
         return allFees.stream()
-                .filter(f -> f.getFlat().getFlatId().equals(flatId))
+                .filter(f -> f.getFlat_id().getFlatId().equals(flatId))
                 .collect(Collectors.toList());
 
     }
@@ -55,8 +55,4 @@ public class FeeServiceImpl implements FeeService {
         return true;
     }
 
-    /*@Override
-    public Fee getTotalFee(Integer water_bill, Integer gas_bill, Integer electricity_bill, Integer dues) {
-
-    }*/
 }

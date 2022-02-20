@@ -37,17 +37,16 @@ public class UserService {
 
 
 
-    /*@PostConstruct
+    @PostConstruct
     private void postConstruct() {
         //Normally I have another admin defined in database.
-        User newAdmin = new User();
-        newAdmin.setUsername("selami");
-        newAdmin.setPassword("selami");
+        User newAdmin =userRepository.findByUsername("zeynel") ;
+        newAdmin.setPassword("zeynel");
         newAdmin.setEmail("admin@admin.com");
         newAdmin.setRoles(Collections.singletonList(roleRepository.getById(1)));
         newAdmin.setPassword(passwordEncoder.encode(newAdmin.getPassword()));
         userRepository.save(newAdmin);
-    }*/
+    }
 
 
 
@@ -60,7 +59,6 @@ public class UserService {
         } else {
             throw new CustomAuthenticationException("Invalid username/password supplied", HttpStatus.BAD_REQUEST);
         }
-
     }
 
     public String signup(User user) {

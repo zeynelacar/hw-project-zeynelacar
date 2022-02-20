@@ -37,10 +37,10 @@ public class Fee implements Serializable {
     private Integer dues;
 
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinColumn(name = "flat_id",referencedColumnName = "flatId",nullable = false)
     @JsonIgnoreProperties({"flat_number","id"})
-    private Flat flat;
+    private Flat flat_id;
 
     @Transient
     public Integer totalFee;
