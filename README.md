@@ -12,3 +12,4 @@ Used technologies are:
 - PostgreSQL
 - Spring Boot
 - RabbitMQ(Messages with [helper project.](https://github.com/Patika-PayCore-BootCamp-Organization/hw-project-helper-zeynelacar))
+- Spring Security
