@@ -28,7 +28,7 @@ public class UserController {
         return userService.signup(user);
     }
 
-    @DeleteMapping(value = "/{username}")
+    @DeleteMapping(value = "/delete/{username}")
     public String delete(@PathVariable String username) {
         userService.delete(username);
         return username;
